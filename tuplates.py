@@ -1,7 +1,13 @@
-#!/usr/bin/env python3
+# tuplate_start(https://cdn.jsdelivr.net/gh/anderspitman/tuplates@v0.2.0/tuplates.py)
 
 import os, json
 from urllib import request
+
+# These need to be built with concatenation so that tuplates.py can be run
+# on itself (ie to update). Otherwise it falsely detects tuplates in the
+# parsing code below.
+start_str = 'tuplate_' + 'start('
+end_str = 'tuplate_' + 'end'
 
 def process_file(path):
 
@@ -14,21 +20,21 @@ def process_file(path):
 
     with open(path, 'r') as f:
         for line in f:
-            if 'tuplate_start' in line:
+            if start_str in line:
                 if replacing:
-                    raise Error("Unexpected tuplate_start")
+                    raise Error("Unexpected " + start_str)
                 replacing = True
 
-                location = line.split('tuplate_start(')[1].split(')')[0]
+                location = line.split(start_str)[1].split(')')[0]
                 tuplate = get_tuplate(location)
 
                 out += line
                 out += tuplate
                 modified = True
 
-            elif 'tuplate_end' in line:
+            elif end_str in line:
                 if not replacing:
-                    raise Error("Unexpected tuplate_end")
+                    raise Error("Unexpected " + end_str)
                 replacing = False
 
                 out += line
@@ -78,3 +84,5 @@ if __name__ == '__main__':
                 continue
 
             process_file(path)
+
+# tuplate_end
