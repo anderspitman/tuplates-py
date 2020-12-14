@@ -1,4 +1,4 @@
-# tuplate_start(https://cdn.jsdelivr.net/gh/anderspitman/tuplates@v0.2.0/tuplates.py)
+# tuplate_start(https://cdn.jsdelivr.net/gh/anderspitman/tuplates@v0.3.0/tuplates.py)
 
 import os, json
 from urllib import request
@@ -22,7 +22,7 @@ def process_file(path):
         for line in f:
             if start_str in line:
                 if replacing:
-                    raise Error("Unexpected " + start_str)
+                    raise Exception("Unexpected " + start_str)
                 replacing = True
 
                 location = line.split(start_str)[1].split(')')[0]
@@ -34,7 +34,7 @@ def process_file(path):
 
             elif end_str in line:
                 if not replacing:
-                    raise Error("Unexpected " + end_str)
+                    raise Exception("Unexpected " + end_str)
                 replacing = False
 
                 out += line
