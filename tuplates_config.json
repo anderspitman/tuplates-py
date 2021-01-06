@@ -1,4 +1,4 @@
 {
   "exclude": ["node_modules"],
-  "extensions": [".py", ".js", ".json"]
+  "extensions": ["py", "js", "json"]
 }

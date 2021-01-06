@@ -1,6 +1,6 @@
-# tuplate_start(https://cdn.jsdelivr.net/gh/anderspitman/tuplates@v0.3.0/tuplates.py)
+# tuplate_start(https://cdn.jsdelivr.net/gh/anderspitman/tuplates@v0.4.0/tuplates.py)
 
-import os, json
+import os, json, argparse
 from urllib import request
 
 # These need to be built with concatenation so that tuplates.py can be run
@@ -19,29 +19,33 @@ def process_file(path):
     out = ''
 
     with open(path, 'r') as f:
-        for line in f:
-            if start_str in line:
-                if replacing:
-                    raise Exception("Unexpected " + start_str)
-                replacing = True
+        try:
+            for line in f:
+                if start_str in line:
+                    if replacing:
+                        raise Exception("Unexpected " + start_str)
+                    replacing = True
 
-                location = line.split(start_str)[1].split(')')[0]
-                tuplate = get_tuplate(location)
+                    location = line.split(start_str)[1].split(')')[0]
+                    tuplate = get_tuplate(location)
 
-                out += line
-                out += tuplate
-                modified = True
+                    out += line
+                    out += tuplate
+                    modified = True
 
-            elif end_str in line:
-                if not replacing:
-                    raise Exception("Unexpected " + end_str)
-                replacing = False
+                elif end_str in line:
+                    if not replacing:
+                        raise Exception("Unexpected " + end_str)
+                    replacing = False
 
-                out += line
-            elif replacing:
-                pass
-            else:
-                out += line
+                    out += line
+                elif replacing:
+                    pass
+                else:
+                    out += line
+        except:
+            print("Failed to process {}. Is it a text file?".format(path))
+            return
 
     # reopen file to overwrite it
     if modified:
@@ -66,8 +70,27 @@ def parse_config(config):
 
 if __name__ == '__main__':
 
-    with open ('tuplates_config.json') as f:
-        config = parse_config(json.load(f))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c','--config', default='tuplates_config.json', help='Config path')
+    parser.add_argument('-t','--file-type', action='append', help='Add file type')
+    parser.add_argument('-e','--exclude', action='append', help='Exclude')
+    args = parser.parse_args()
+
+    try:
+        with open (args.config) as f:
+            config = parse_config(json.load(f))
+    except:
+        config = parse_config({})
+
+    if args.file_type:
+        for ft in args.file_type:
+            if ft not in config['extensions']:
+                config['extensions'].append(ft)
+
+    if args.exclude:
+        for e in args.exclude:
+            if e not in config['exclude']:
+                config['exclude'].append(e)
 
     for (dirpath, dirnames, filenames) in os.walk("./"):
 
@@ -79,6 +102,8 @@ if __name__ == '__main__':
             path = os.path.join(dirpath, filename)
 
             _, ext = os.path.splitext(path)
+            # skip period
+            ext = ext[1:]
 
             if config['extensions'] and ext.lower() not in config['extensions']:
                 continue
