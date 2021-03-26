@@ -1,4 +1,4 @@
-# tuplate_start(https://cdn.jsdelivr.net/gh/anderspitman/tuplates@v0.4.0/tuplates.py)
+# tuplate_start(https://cdn.jsdelivr.net/gh/anderspitman/tuplates@v0.5.0/tuplates.py)
 
 import os, json, argparse
 from urllib import request
