@@ -95,7 +95,10 @@ if __name__ == '__main__':
     for (dirpath, dirnames, filenames) in os.walk("./"):
 
         del_list = [ (i, x) for (i, x) in enumerate(dirnames) if x in config['exclude'] ]
-        for item in del_list:
+
+        # Go in reverse order since we need to delete in place and don't want
+        # elements to shift as things are deleted.
+        for item in reversed(del_list):
             del dirnames[item[0]]
 
         for filename in filenames:
