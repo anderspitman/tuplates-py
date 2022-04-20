@@ -29,8 +29,13 @@ def process_file(path):
                     location = line.split(start_str)[1].split(')')[0]
                     tuplate = get_tuplate(location)
 
+                    num_spaces = num_leading_spaces(line)
+
                     out += line
-                    out += tuplate
+
+                    for tup_line in tuplate.split('\n'):
+                        out += (' ' * num_spaces) + tup_line + '\n'
+
                     modified = True
 
                 elif end_str in line:
@@ -67,6 +72,14 @@ def parse_config(config):
         if key not in config:
             config[key] = []
     return config
+
+def num_leading_spaces(line):
+    num_spaces = 0
+    for char in line:
+        if char == ' ':
+            num_spaces += 1
+        else:
+            return num_spaces
 
 if __name__ == '__main__':
 
