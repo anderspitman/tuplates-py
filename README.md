@@ -137,3 +137,11 @@ If you re-run it again, the result is the same, even though there's already
 code between the tuplate tags. It simply replaces whatever is in there (if
 there is anything). Just make sure your tuplate commands are on a line by
 themselves.
+
+You can also import from URLs:
+
+```javascript
+// leftpad.js
+// tuplate_start(https://cdn.jsdelivr.net/npm/left-pad@1.3.0/index.js)
+// tuplate_end()
+```
