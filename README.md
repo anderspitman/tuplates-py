@@ -2,8 +2,9 @@
 
 Tale as old as time. I started developing a new static site. At first it was
 just a single page. But
-of course eventually I needed to add a header section. And of course HTML doesn't have
-a way to
+of course eventually I needed to add more ages and a header section with links to
+them, and I needed that header section on every page. And of course HTML doesn't
+havea way to
 [include another HTML file](https://css-tricks.com/the-simplest-ways-to-handle-html-includes/),
 because the popularity of JavaScript frameworks has slowed progress in
 other web APIs.
