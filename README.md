@@ -145,10 +145,12 @@ You can also import from URLs:
 // tuplate_start(https://cdn.jsdelivr.net/npm/left-pad@1.3.0/index.js)
 // tuplate_end()
 ```
+
 becomes:
+
+```javascript
 // leftpad.js
 // tuplate_start(https://cdn.jsdelivr.net/npm/left-pad@1.3.0/index.js)
-```javascript
 /* This program is free software. It comes without any warranty, to
      * the extent permitted by applicable law. You can redistribute it
      * and/or modify it under the terms of the Do What The Fuck You Want
