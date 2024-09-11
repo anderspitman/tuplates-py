@@ -148,6 +148,18 @@ You can also import from URLs:
 
 becomes:
 
+If name collisions are a problem, you can do things like this:
+
+```javascript
+// leftpad.js
+const leftPadFunc = (function() {
+  const module = {};
+// tuplate_start(https://cdn.jsdelivr.net/npm/left-pad@1.3.0/index.js)
+// tuplate_end()
+  return leftPad;
+})();
+```
+
 ```javascript
 // leftpad.js
 // tuplate_start(https://cdn.jsdelivr.net/npm/left-pad@1.3.0/index.js)
