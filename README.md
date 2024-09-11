@@ -2,16 +2,17 @@
 
 Tale as old as time. I started developing a new static site. At first it was
 just a single page. But
-of course eventually I needed to add more ages and a header section with links to
+of course eventually I needed to add more pages and a header section with links to
 them, and I needed that header section on every page. And of course HTML doesn't
-havea way to
+have a way to
 [include another HTML file](https://css-tricks.com/the-simplest-ways-to-handle-html-includes/),
 because the popularity of JavaScript frameworks has slowed progress in
 other web APIs.
 
-tuplates is a simple way to template your static sites, without creating a
+tuplates is a simple way to template your code, without creating a
 dependency on your templating tool. Rather than replacing your template tags,
-it works by replacing lines between your template tags. This means that both
+it works by replacing lines between your template tags, are in
+single-line comments. This means that both
 your template and code live together in your files. When you need to make a 
 change, you update the fragment and re-run tuplates, and it replaces the old
 code. This way you can check your actual code into source control, rather than
