@@ -83,7 +83,7 @@ Run the `tuplates.py` script in the directory above the `templates` directory.
 It will walk the directory and replace the lines between the tags with the
 tuplates.
 
-After running once, the source files look like this:
+After running once, the source files might look something like this:
 
 ```html
 <!-- index.html -->
@@ -134,9 +134,10 @@ const data = {
 console.log(data);
 ```
 
-If you re-run it again, the result is the same, even though there's already
+If you re-run it again, the output doesn't change (unless you've changed
+the source fragments), even though there's already
 code between the tuplate tags. It simply replaces whatever is in there (if
-there is anything). Just make sure your tuplate commands are on a line by
+there is anything). Just make sure your tuplate comments are on a line by
 themselves.
 
 You can also import from URLs:
